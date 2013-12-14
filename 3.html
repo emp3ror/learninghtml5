@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+	<div id="my"></div>
+	<center>
+		<canvas id="nepalmap" height="383px" width="700px" style="background:url('nepal-75-district-map.gif')"></canvas>
+	</center>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+        var canvas = document.getElementById('nepalmap');
+        
+        var ctx=canvas.getContext("2d");
+        var x1 =455,y1 = 255;
+        ctx.fillStyle="red";
+        ctx.fillRect(0,0,300,150);
+        
+    $('#nepalmap').on('click',function(e){
+        event = e;
+        event = event || window.event;
+        var x = event.pageX - canvas.offsetLeft,y = event.pageY - canvas.offsetTop;
+
+        console.log(x + ' ' + y);
+        console.log()
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        console.log("canvas width="+canvas.width);
+        canvas.width = canvas.width;
+        ctx.moveTo(x1,y1);
+        ctx.lineTo(x,y);
+        ctx.stroke();
+
+        console.log("canvas.width="+canvas.width+" canvas.height="+canvas.height);
+
+    });
+
+  var count = 0;
+// $('#nepalmap').on('click', function(e){
+//       event = e;
+
+//     event = event || window.event;
+
+//     var canvas = document.getElementById('nepalmap'),
+//         x = event.pageX - canvas.offsetLeft,
+//         y = event.pageY - canvas.offsetTop;
+
+//     console.log(x + ' ' + y);
+//     var ctx=canvas.getContext("2d");
+//     if(count<1){
+//     	x1= x;
+//     	y1=y;
+//     }
+//     else {
+//     	ctx.moveTo(x1,y1);
+// 		ctx.lineTo(x,y);
+// 		ctx.stroke();
+// 		console.log(count);
+// 		x1= x;
+//     	y1=y;
+		
+
+// 	}
+// 	count++;
+//     });
+
+// (function(){
+
+// 	$( "#nepalmap" ).click(function() {
+// 		var c=document.getElementById("nepalmap");
+// 		var ctx=c.getContext("2d");
+// 		ctx.moveTo(450,250);
+// 		ctx.lineTo(200,100);
+// 		ctx.stroke();
+
+// 		ctx.moveTo(45,250);
+// 		ctx.lineTo(20,100);
+// 		ctx.stroke();
+
+// 		ctx.beginPath();
+// 		ctx.arc(45,250,40,0,2*Math.PI);
+// 		ctx.stroke();
+// 	});
+	
+// })();
+
+</script>
+</body>
+</html>
