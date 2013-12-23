@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style type="text/css">
+	.wrapper {
+		width: 800px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#layer1, #layer2 {
+		border: 1px solid #000;
+		
+	}
+</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div style="position: relative;">
+			<canvas id="layer1" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+			<canvas id="layer2" style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+		</div>
+
+		<!-- <canvas id="myCanvas" width="800px"></canvas> -->
+	</div>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+var canvas=document.getElementById("layer1");
+var ctx=canvas.getContext("2d");
+canvas.width  = 20*30;
+canvas.height = 10*30;
+// canvas.width = canvas.width;
+var a = new Array();
+ctx.beginPath();
+for (var i = 0; i < 20; i++) {
+	a[i]=new Array();
+	for (var j = 0; j < 10; j++) {
+		a[i][j] = {
+			x: i*30,
+			y: j*30,
+			val: ""
+		};
+		ctx.rect(0+i*30,0+j*30,30,30);
+		console.log(a[i][j]);
+	};
+};
+
+ctx.lineWidth="2";
+ctx.strokeStyle="#c5c5c5";
+ctx.stroke();
+
+
+	var canvas2=document.getElementById("layer2");
+	var ctx2=canvas2.getContext("2d");
+	canvas2.width  = 20*30;
+	canvas2.height = 10*30;
+$('#layer2').on('click',function(e){ 
+        event = e;
+        event = event || window.event;
+        var x = event.pageX - canvas2.offsetLeft,y = event.pageY - canvas2.offsetTop;
+
+        console.log(x + ' ' + y);
+        x= Math.floor(x/30)-9;
+        y=Math.floor(y/30)
+        console.log(x + ' ' + y);
+        
+        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+        canvas2.width = canvas2.width;
+        
+		ctx2.beginPath();
+        
+        ctx2.lineWidth="2";
+        ctx2.strokeStyle="blue";
+        ctx2.rect(a[x][y].x,a[x][y].y,30,30);
+        ctx2.stroke();
+        
+
+    });
+
+
+// ctx.font="20px Arial";
+// ctx.fillText("H",20+7,20+22);
+</script>
+</body>
+</html>
